@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: supplychain
+-- Host: localhost    Database: inventory1
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `shipments`
+-- Table structure for table `shipment`
 --
 
-DROP TABLE IF EXISTS `shipments`;
+DROP TABLE IF EXISTS `shipment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `shipments` (
-  `ShipmentID` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `shipment` (
+  `ShipmentID` int NOT NULL,
   `OrderID` int DEFAULT NULL,
-  `ShipmentDate` date NOT NULL,
-  `EstimatedArrivalDate` date NOT NULL,
+  `Quantity` int DEFAULT NULL,
   PRIMARY KEY (`ShipmentID`),
   KEY `OrderID` (`OrderID`),
-  CONSTRAINT `shipments_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `shipment_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `shipments`
+-- Dumping data for table `shipment`
 --
 
-LOCK TABLES `shipments` WRITE;
-/*!40000 ALTER TABLE `shipments` DISABLE KEYS */;
-INSERT INTO `shipments` VALUES (1,1,'2024-05-02','2024-05-07'),(2,2,'2024-05-04','2024-05-06'),(3,3,'2024-05-06','2024-05-09'),(4,5,'2024-05-13','2024-05-14');
-/*!40000 ALTER TABLE `shipments` ENABLE KEYS */;
+LOCK TABLES `shipment` WRITE;
+/*!40000 ALTER TABLE `shipment` DISABLE KEYS */;
+INSERT INTO `shipment` VALUES (1,1,2),(2,2,1),(3,3,3),(4,4,2),(5,5,1);
+/*!40000 ALTER TABLE `shipment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 23:22:55
+-- Dump completed on 2024-05-25 16:19:01

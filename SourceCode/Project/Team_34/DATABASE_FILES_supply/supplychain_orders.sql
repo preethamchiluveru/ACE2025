@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: supplychain
+-- Host: localhost    Database: inventory1
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -23,13 +23,12 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
-  `OrderID` int NOT NULL AUTO_INCREMENT,
-  `OrderDate` date NOT NULL,
-  `DeliveryStatus` varchar(50) DEFAULT NULL,
-  `TotalAmount` decimal(10,2) DEFAULT NULL,
-  `ShippingMethod` varchar(50) DEFAULT NULL,
+  `OrderID` int NOT NULL,
+  `CustomerID` int DEFAULT NULL,
+  `Date` date DEFAULT NULL,
+  `TotalCost` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`OrderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +37,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2024-05-01','Delivered',150.75,'Standard'),(2,'2024-05-03','Pending',200.50,'Express'),(3,'2024-05-05','Shipped',99.99,'Standard'),(4,'2024-05-10','Cancelled',0.00,'None'),(5,'2024-05-12','Delivered',250.00,'Overnight'),(6,'2024-05-01','Delivered',150.75,'Standard'),(7,'2024-05-03','Pending',200.50,'Express'),(8,'2024-05-05','Shipped',99.99,'Standard'),(9,'2024-05-10','Cancelled',0.00,'None'),(10,'2024-05-12','Delivered',250.00,'Overnight');
+INSERT INTO `orders` VALUES (1,101,'2024-05-01',1099.98),(2,102,'2024-05-05',799.99),(3,103,'2024-05-10',299.99),(4,104,'2024-05-15',599.98),(5,105,'2024-05-20',159.98);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 23:22:54
+-- Dump completed on 2024-05-25 16:19:01

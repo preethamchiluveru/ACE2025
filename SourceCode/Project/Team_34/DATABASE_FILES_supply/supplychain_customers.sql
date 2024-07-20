@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: supplychain
+-- Host: localhost    Database: inventory1
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -16,30 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customers`
+-- Table structure for table `location`
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customers` (
-  `CustomerID` int NOT NULL AUTO_INCREMENT,
-  `PhoneNumber` varchar(15) DEFAULT NULL,
-  `FirstName` varchar(100) DEFAULT NULL,
-  `LastName` varchar(100) DEFAULT NULL,
-  `BillingAddress` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`CustomerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `location` (
+  `LocationID` int NOT NULL,
+  `WarehouseID` int DEFAULT NULL,
+  `Bin` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`LocationID`),
+  KEY `WarehouseID` (`WarehouseID`),
+  CONSTRAINT `location_ibfk_1` FOREIGN KEY (`WarehouseID`) REFERENCES `warehouse` (`WarehouseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customers`
+-- Dumping data for table `location`
 --
 
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'123-456-7890','John','Doe','123 Elm Street, Springfield'),(2,'987-654-3210','Jane','Smith','456 Oak Avenue, Shelbyville'),(3,'555-123-4567','Emily','Johnson','789 Maple Road, Capital City'),(4,'444-555-6666','Michael','Brown','321 Pine Lane, Metropolis'),(5,'333-444-5555','Sarah','Davis','654 Cedar Court, Smallville');
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+LOCK TABLES `location` WRITE;
+/*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,1,'A1'),(2,2,'B2'),(3,3,'C3'),(4,4,'D4'),(5,5,'E5');
+/*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 23:22:54
+-- Dump completed on 2024-05-25 16:19:00

@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: supplychain
+-- Host: localhost    Database: inventory1
 -- ------------------------------------------------------
 -- Server version	8.0.37
 
@@ -23,15 +23,18 @@ DROP TABLE IF EXISTS `returns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `returns` (
-  `ReturnID` int NOT NULL AUTO_INCREMENT,
-  `OrderID` int NOT NULL,
-  `ReasonForReturn` varchar(255) DEFAULT NULL,
-  `ReturnDate` date NOT NULL,
-  `ReturnStatus` varchar(50) DEFAULT NULL,
+  `ReturnID` int NOT NULL,
+  `OrderID` int DEFAULT NULL,
+  `ProductID` int DEFAULT NULL,
+  `Quantity` int DEFAULT NULL,
+  `Reason` text,
+  `Date` date DEFAULT NULL,
   PRIMARY KEY (`ReturnID`),
   KEY `OrderID` (`OrderID`),
-  CONSTRAINT `returns_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `ProductID` (`ProductID`),
+  CONSTRAINT `returns_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
+  CONSTRAINT `returns_ibfk_2` FOREIGN KEY (`ProductID`) REFERENCES `product` (`ProductID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +43,7 @@ CREATE TABLE `returns` (
 
 LOCK TABLES `returns` WRITE;
 /*!40000 ALTER TABLE `returns` DISABLE KEYS */;
-INSERT INTO `returns` VALUES (1,1,'Damaged item','2024-05-15','Processed'),(2,2,'Wrong item shipped','2024-05-16','Pending'),(3,3,'Item not as described','2024-05-17','Approved'),(4,4,'Changed mind','2024-05-18','Rejected'),(5,5,'Received late','2024-05-19','Processed');
+INSERT INTO `returns` VALUES (1,1,1,1,'Defective product','2024-05-05'),(2,2,2,1,'Wrong color','2024-05-10'),(3,3,3,2,'Changed mind','2024-05-15'),(4,4,4,1,'Damaged during shipping','2024-05-20'),(5,5,5,1,'Not as described','2024-05-25');
 /*!40000 ALTER TABLE `returns` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-25 23:22:55
+-- Dump completed on 2024-05-25 16:19:01
